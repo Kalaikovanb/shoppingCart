@@ -50,10 +50,10 @@ function Navbar() {
             </div> 
             <img onClick={nav_open} className='nav-dropdown-img' src={drop} alt="" />   
             <ul ref={mobile_res} className="nav-options nav-options-visible">
-                <li onClick={()=>{setMenu("shop")}}><Link to="/" style={{textDecoration:"none"}}>Home</Link> {(menu==="shop") ? <hr/> :""}</li>   
-                <li onClick={()=>{setMenu("men")}}><Link to="/men" style={{textDecoration:"none"}}>Men</Link> {(menu==="men") ? <hr/> :""}</li>   
-                <li onClick={()=>{setMenu("women")}}><Link to="/women" style={{textDecoration:"none"}}>Women</Link> {(menu==="women") ? <hr/> :""}</li>   
-                <li onClick={()=>{setMenu("kids")}}><Link to="/kids" style={{textDecoration:"none"}}>Kids</Link> {(menu==="kids") ? <hr/> :""}</li>    
+                <li onClick={()=>{setMenu("shop")}}><Link to="/shoppingCart" style={{textDecoration:"none"}}>Home</Link> {(menu==="shop") ? <hr/> :""}</li>   
+                <li onClick={()=>{setMenu("men")}}><Link to="/shoppingCart/men" style={{textDecoration:"none"}}>Men</Link> {(menu==="men") ? <hr/> :""}</li>   
+                <li onClick={()=>{setMenu("women")}}><Link to="/shoppingCart/women" style={{textDecoration:"none"}}>Women</Link> {(menu==="women") ? <hr/> :""}</li>   
+                <li onClick={()=>{setMenu("kids")}}><Link to="/shoppingCart/kids" style={{textDecoration:"none"}}>Kids</Link> {(menu==="kids") ? <hr/> :""}</li>    
             </ul>     
         </div>
      )
