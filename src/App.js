@@ -20,17 +20,17 @@ function App() {
       <BrowserRouter>
       <Navbar/>
       <Routes >
-        <Route path="/" element={<Shop/>}/>
+        <Route path="/shoppingCart" element={<Shop/>}/>
         {/* <Route path="/login" element={<LoginSignup/>}/> */}
         {/* <Route path="/register" element={<LoginSignup/>}/> */}
-        <Route path="/men" element={<ShopCategory banner={men_banner}  category="men" />}/>
-        <Route path="/women" element={<ShopCategory banner={women_banner} category="women"/>}/>
-        <Route path="/kids" element={<ShopCategory banner={kid_banner} category="kid" />}/>
-        <Route path="/product" element={<Product/>}>
+        <Route path="/shoppingCart/men" element={<ShopCategory banner={men_banner}  category="men" />}/>
+        <Route path="/shoppingCart/women" element={<ShopCategory banner={women_banner} category="women"/>}/>
+        <Route path="/shoppingCart/kids" element={<ShopCategory banner={kid_banner} category="kid" />}/>
+        <Route path="/shoppingCart/product" element={<Product/>}>
           <Route path=":productId" element={<Product/>} />
         </Route>
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/register" element={<Register/>} />
+        <Route path="/shoppingCart/cart" element={<Cart/>} />
+        <Route path="/shoppingCart/register" element={<Register/>} />
       </Routes>
       <Footer/>
       </BrowserRouter>

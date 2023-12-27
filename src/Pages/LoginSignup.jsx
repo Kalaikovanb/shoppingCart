@@ -127,7 +127,7 @@ const LoginSignup=()=> {
         />
         <button type="submit">Submit</button>
       </form>
-      <Link to="/register" className="login-link">
+      <Link to="/shoppingCart/register" className="login-link">
         Already have an account? Login here.
       </Link>
     </div>

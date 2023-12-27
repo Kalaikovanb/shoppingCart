@@ -28,18 +28,18 @@ function Navbar() {
         <div className="navbar">
             <div className="navbar-cart-img">
                 <img src={logo} alt="Shoppy" />
-                <Link onClick={()=>{setMenu("shop")}} to="/" style={{textDecoration:"none"}}><p>SHOPPER</p></Link>
+                <Link onClick={()=>{setMenu("shop")}} to="/shoppingCart" style={{textDecoration:"none"}}><p>SHOPPER</p></Link>
             </div>
             {/* <img onClick={nav_open} className='nav-dropdown-img' src={drop} alt="" /> */}
             <ul ref={menuRef} className="nav-options">
-                <li onClick={()=>{setMenu("shop")}}><Link to="/" style={{textDecoration:"none"}}>Home</Link> {(menu==="shop") ? <hr/> :""}</li>   
-                <li onClick={()=>{setMenu("men")}}><Link to="/men" style={{textDecoration:"none"}}>Men</Link> {(menu==="men") ? <hr/> :""}</li>   
-                <li onClick={()=>{setMenu("women")}}><Link to="/women" style={{textDecoration:"none"}}>Women</Link> {(menu==="women") ? <hr/> :""}</li>   
-                <li onClick={()=>{setMenu("kids")}}><Link to="/kids" style={{textDecoration:"none"}}>Kids</Link> {(menu==="kids") ? <hr/> :""}</li>    
+                <li onClick={()=>{setMenu("shop")}}><Link to="/shoppingCart" style={{textDecoration:"none"}}>Home</Link> {(menu==="shop") ? <hr/> :""}</li>   
+                <li onClick={()=>{setMenu("men")}}><Link to="/shoppingCart/men" style={{textDecoration:"none"}}>Men</Link> {(menu==="men") ? <hr/> :""}</li>   
+                <li onClick={()=>{setMenu("women")}}><Link to="/shoppingCart/women" style={{textDecoration:"none"}}>Women</Link> {(menu==="women") ? <hr/> :""}</li>   
+                <li onClick={()=>{setMenu("kids")}}><Link to="/shoppingCart/kids" style={{textDecoration:"none"}}>Kids</Link> {(menu==="kids") ? <hr/> :""}</li>    
             </ul>
             <div className="login-cart">
-                <Link to='/register'><button>Login</button></Link>
-                <Link to='/cart' onClick={window.scrollTo(0,0)} style={{textDecoration:"none"}}> 
+                <Link to='/shoppingCart/register'><button>Login</button></Link>
+                <Link to='/shoppingCart/cart' onClick={window.scrollTo(0,0)} style={{textDecoration:"none"}}> 
                     <div className="cart-img">
                         <img src={cart_icon} alt="" />
                         <div className="cart-img-count">
