@@ -1,0 +1,141 @@
+.item{
+    width: 300px;
+    margin: auto;
+    img{
+        width: 300px;
+    }
+    p{
+        font-size: 18px;
+        margin: 5px 0px;
+    }
+    .item-price{
+        display: flex;
+        gap:15px;
+        .new-price{
+            color:black;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .old-price{
+            color:grey;
+            font-weight: 500;
+            font-size: 16px;
+            text-decoration: line-through;
+        }
+    }
+    
+}
+.item:hover{
+    transform:scale(1.05);
+    transition: 0.6s;
+}
+@media only screen and (max-width:1280px) {
+    .item{
+        width: 260px;
+        img{
+            width: 260px;
+        }
+        p{
+            font-size: 16px;
+        }
+        .item-price{
+            gap:13px;
+            .new-price{
+                font-size: 14px;
+            }
+            .old-price{
+                font-size: 14px;
+            }
+        }
+        
+    }
+  }
+
+  @media only screen and (max-width:1024px) {
+    .item{
+        width: 220px;
+        img{
+            width: 220px;
+        }
+        p{
+            font-size: 15px;
+        }
+        .item-price{
+            gap:13px;
+            .new-price{
+                font-size: 13px;
+            }
+            .old-price{
+                font-size: 13px;
+            }
+        }
+        
+    }
+  }
+
+  @media only screen and (max-width:800px) {
+    .item{
+        width: 200px;
+        img{
+            width: 200px;
+        }
+        p{
+            font-size: 14px;
+        }
+        .item-price{
+            gap:13px;
+            .new-price{
+                font-size: 12px;
+            }
+            .old-price{
+                font-size: 12px;
+            }
+        }
+        
+    }
+  }
+
+  @media only screen and (max-width:506px) {
+    .item{
+        width: 180px;
+        img{
+            width: 180px;
+        }
+        p{
+            font-size: 13px;
+        }
+        .item-price{
+            gap:13px;
+            .new-price{
+                font-size: 12px;
+            }
+            .old-price{
+                font-size: 12px;
+            }
+        }
+        
+    }
+  }
+
+
+  @media only screen and (min-width:380px) and (max-width:505px){
+    .item{
+        width: 135px;
+        img{
+            width: 135px;
+        }
+        p{
+            font-size: 12px;
+        }
+        .item-price{
+            gap:10px;
+            .new-price{
+                font-size: 11px;
+            }
+            .old-price{
+                font-size: 11px;
+            }
+        }
+        
+    }
+  }
