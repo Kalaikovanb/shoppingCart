@@ -10,7 +10,7 @@ import { ShopContext } from "../../Context/ShopContext";
 function ProductDisplay({data}) {
     useEffect(()=>{
         window.scrollTo(0,0);
-      })
+      },[])
     const {addCart}=useContext(ShopContext);
     return ( 
         <div className="product-display">

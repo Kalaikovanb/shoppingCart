@@ -9,7 +9,7 @@ function CartItems() {
    let tot=0;
    useEffect(()=>{
     window.scrollTo(0,0);
-  })
+  },[])
     for (let item in cartItems){
         if(cartItems[item]>0){
             tot+=cartItems[item]

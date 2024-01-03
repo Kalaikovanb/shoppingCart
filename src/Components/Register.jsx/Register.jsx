@@ -14,7 +14,7 @@ function Register() {
   });
   useEffect(()=>{
     window.scrollTo(0,0);
-  }, )
+  }, [])
   // useEffect(() => {
   //     axios
   //       .get('http://localhost/ss.php')

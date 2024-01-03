@@ -1,108 +1,113 @@
-.popular{
-    display: flex;
-    align-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 30px;
-    padding-top: 30px;
-    // height: 90vh;
-    h1{
+@import "../../main.scss";
+.popular {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+  padding-top: 30px;
+  // height: 90vh;
+  h1 {
     color: black;
+    @include themed() {
+      color: t("whitecolor");
+    }
     font-size: 50px;
     font-weight: 600;
-    }
-    hr{
-        width: 200px;
+  }
+  hr {
+    width: 200px;
     height: 6px;
     background: black;
+    @include themed() {
+      background: t("whitecolor");
+    }
     font-weight: 600;
     border-radius: 11px;
-    }
-    .popular-women{
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        align-content: center;
-        gap: 70px;
-        margin-top: 20px;
-    }
+  }
+  .popular-women {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    gap: 70px;
+    margin-top: 20px;
+  }
 }
 
-
-@media screen and (max-width:1280px) {
-    .popular{
-        h1{
-        font-size: 45px;
-        }
-        hr{
-        width: 180px;
-        height: 5px;
-        }
-        .popular-women{
-            gap: 50px;
-        }
+@media screen and (max-width: 1280px) {
+  .popular {
+    h1 {
+      font-size: 45px;
     }
+    hr {
+      width: 180px;
+      height: 5px;
+    }
+    .popular-women {
+      gap: 50px;
+    }
+  }
 }
 
-@media screen and (max-width:1024px) {
-    .popular{
-        h1{
-        font-size: 40px;
-        }
-        hr{
-        width: 160px;
-        height: 4px;
-        }
-        .popular-women{
-            gap: 40px;
-        }
+@media screen and (max-width: 1024px) {
+  .popular {
+    h1 {
+      font-size: 40px;
     }
+    hr {
+      width: 160px;
+      height: 4px;
+    }
+    .popular-women {
+      gap: 40px;
+    }
+  }
 }
 
-@media screen and (max-width:800px) {
-    .popular{
-        h1{
-        font-size: 35px;
-        }
-        hr{
-        width: 140px;
-        height: 4px;
-        }
-        .popular-women{
-            gap: 35px;
-        }
+@media screen and (max-width: 800px) {
+  .popular {
+    h1 {
+      font-size: 35px;
     }
+    hr {
+      width: 140px;
+      height: 4px;
+    }
+    .popular-women {
+      gap: 35px;
+    }
+  }
 }
 
-@media screen and (max-width:600px) {
-    .popular{
-        h1{
-        font-size: 30px;
-        }
-        hr{
-        width: 120px;
-        height: 3px;
-        }
-        .popular-women{
-            gap: 30px;
-        }
+@media screen and (max-width: 600px) {
+  .popular {
+    h1 {
+      font-size: 30px;
     }
+    hr {
+      width: 120px;
+      height: 3px;
+    }
+    .popular-women {
+      gap: 30px;
+    }
+  }
 }
 
-@media screen and (max-width:415px) {
-    .popular{
-        h1{
-        font-size: 25px;
-        }
-        hr{
-        width: 100px;
-        height: 3px;
-        }
-        .popular-women{
-            gap: 25px;
-        }
+@media screen and (max-width: 415px) {
+  .popular {
+    h1 {
+      font-size: 25px;
     }
+    hr {
+      width: 100px;
+      height: 3px;
+    }
+    .popular-women {
+      gap: 25px;
+    }
+  }
 }
-
