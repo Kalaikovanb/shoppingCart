@@ -4,13 +4,10 @@ import footer_img from "../Assets/logo_big.png";
 import insta from "../Assets/instagram_icon.png";
 import pin from "../Assets/pintester_icon.png";
 import whatsapp from "../Assets/whatsapp_icon.png";
-import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { ToastContainer, Flip } from "react-toastify";
 
 function Footer() {
-  const notice = () => {
-    toast.info("Website is Under Development");
-  };
   return (
     <div className="footer">
       <div className="footer-logo">
@@ -20,20 +17,37 @@ function Footer() {
         </Link>
       </div>
       <ul className="footer-links">
-        <li onClick={notice}>Company</li>
-        <li onClick={notice}>Products</li>
-        <li onClick={notice}>Offices</li>
-        <li onClick={notice}>About</li>
-        <li onClick={notice}>Contact</li>
+        <li>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/men" style={{ textDecoration: "none" }}>
+            Men
+          </Link>
+        </li>
+        <li>
+          <Link to="/women" style={{ textDecoration: "none" }}>
+            Women
+          </Link>
+        </li>
+        <li>
+          <Link to="/kids" style={{ textDecoration: "none" }}>
+            Kids
+          </Link>
+        </li>
       </ul>
+
       <ToastContainer
         position="bottom-center"
-        autoClose={700}
+        autoClose={600}
         hideProgressBar
-        newestOnTop={false}
+        newestOnTop
         closeOnClick
         rtl={false}
-        pauseOnFocusLoss
+        transition={Flip}
+        pauseOnFocusLoss={false}
         draggable
         pauseOnHover
         theme="colored"

@@ -13,7 +13,7 @@ function Offer() {
         <h1 className="offer-h1">Exclusive</h1>
         <h1 className="offer-h1">Offers For You</h1>
         <p className="para-offer">ONLY ON BEST SELLER PRODUCTS</p>
-        <Link to="/shoppingCart/women">
+        <Link to="/women">
           <button id="scrolling">Check Now</button>
         </Link>
       </div>

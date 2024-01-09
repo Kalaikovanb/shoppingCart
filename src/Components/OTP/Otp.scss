@@ -1,0 +1,192 @@
+.otp-main {
+  position: relative;
+  margin: 0;
+  .otp-generator {
+    margin: 30px auto;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    background: linear-gradient(to left, #ff9999 0%, #9966cc 50%, #66ccff 100%);
+    h3,
+    p {
+      text-align: center;
+    }
+    .input-box {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      width: 90%;
+      .input-four-boxes {
+        width: 90%;
+        justify-content: center;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        input {
+          height: 50px;
+          width: 50px;
+          text-align: center;
+          border-radius: 10px;
+        }
+        .max-length-reached {
+          background-color: green;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        .focused {
+          border: 3px solid green;
+          outline: black solid 1px;
+        }
+      }
+      .hr-tags {
+        gap: 20px;
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        hr {
+          width: 100%;
+        }
+        span {
+          position: absolute;
+          top: -10px;
+          width: 40px;
+          left: 45%;
+          background: transparent;
+          backdrop-filter: blur(20px);
+          text-align: center;
+        }
+      }
+      button {
+        width: 130px;
+        height: 45px;
+        font-weight: 600;
+        font-size: 16px;
+        background: red;
+        outline: none;
+        border: none;
+        color: white;
+        font-family: poppins;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .link {
+        width: 100%;
+        #login-button,
+        #register-button {
+          background-color: #29be21;
+          color: white;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .otp-main {
+    .otp-generator {
+      width: 50%;
+      p {
+        font-size: 14px;
+      }
+      h3 {
+        font-size: 18px;
+      }
+      .input-box {
+        .input-four-boxes {
+          input {
+            height: 44px;
+            width: 40px;
+          }
+        }
+
+        button {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .otp-main {
+    .otp-generator {
+      width: 50%;
+      p {
+        font-size: 13px;
+      }
+      h3 {
+        font-size: 16px;
+      }
+      .input-box {
+        .input-four-boxes {
+          input {
+            height: 44px;
+            width: 40px;
+          }
+        }
+
+        button {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .otp-main {
+    .otp-generator {
+      width: 50%;
+      .input-box {
+        .input-four-boxes {
+          gap: 20px;
+          input {
+            height: 40px;
+            width: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .otp-main {
+    .otp-generator {
+      width: 50%;
+      .input-box {
+        .input-four-boxes {
+          gap: 15px;
+          input {
+            height: 40px;
+            width: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .otp-main {
+    .otp-generator {
+      width: 70%;
+    }
+  }
+}

@@ -4,12 +4,6 @@ $themefont: ("Outfit", sans-serif);
 $themefont2: ("Monomaniac One", sans-serif);
 
 $themecolor: var(--themecolor);
-// $themecolor: #6366f1;
-// $themecolor: #ff014f;
-// $themecolor: #d74996;
-// $themecolor: #015fe0;
-// $themecolor: #30a499;
-// $themecolor: #55e6a5;
 
 $themes: (
   light: (
@@ -72,7 +66,12 @@ $themes: (
       $theme-map: () !global;
       @each $key, $submap in $map {
         $value: map-get(map-get($themes, $theme), "#{$key}");
-        $theme-map: map-merge($theme-map,($key: $value,)) !global;
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
       }
       @content;
       $theme-map: null !global;

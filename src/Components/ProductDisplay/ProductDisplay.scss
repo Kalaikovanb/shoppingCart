@@ -3,7 +3,7 @@
   display: flex;
   align-content: center;
   gap: 40px;
-  margin: auto;
+  margin: 20px auto;
   width: 80%;
   .product-display-left {
     display: flex;
@@ -83,6 +83,9 @@
         align-content: center;
         align-items: center;
         .vary-size {
+          input {
+            display: none;
+          }
           width: 50px;
           background: whitesmoke;
           display: flex;
@@ -91,7 +94,7 @@
           flex-direction: row;
           justify-content: center;
         }
-        .vary-size:active {
+        .selected {
           background: #ff8800d1;
         }
       }

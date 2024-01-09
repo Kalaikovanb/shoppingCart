@@ -1,0 +1,89 @@
+// .first {
+// @import "~bootstrap/scss/modal";
+// @import "~bootstrap/scss/bootstrap";
+.show {
+  #modal-main-kk {
+    .modal-content {
+      .modal-head-kk {
+        background: green;
+        .close-butt {
+          svg {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+      .modal-body-kk {
+        .modal-form-kk {
+          .step-1 {
+            .forward-back {
+              display: flex;
+              justify-content: flex-end;
+              margin: 5px 0px;
+              svg {
+                width: 40px;
+                height: 30px;
+              }
+            }
+          }
+          .step-2 {
+            .forward-back {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin: 5px 0px;
+              svg {
+                width: 40px;
+                height: 30px;
+              }
+            }
+          }
+          .step-3 {
+            .forward-back {
+              margin: 5px 0px;
+              svg {
+                width: 40px;
+                height: 30px;
+              }
+            }
+          }
+        }
+      }
+      .modal-foot-kk {
+        background: green;
+      }
+    }
+  }
+}
+// }
+// .forward-back {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   width: 100px; // Adjust the width as needed
+//   height: 40px; // Adjust the height as needed
+//   cursor: pointer;
+//   background-color: #f0f0f0; // Background color
+//   border: 1px solid #ccc; // Border style
+//   padding: 10px; // Adjust padding as needed
+
+//   svg {
+//     width: 24px; // Adjust the SVG icon size
+//     height: 24px; // Adjust the SVG icon size
+//     fill: #333; // SVG icon color
+//     transition: transform 0.3s ease; // Smooth transition on hover
+//   }
+
+//   svg:last-child {
+//     transform: scaleX(-1); // Flip the second SVG icon horizontally
+//   }
+
+//   &:hover {
+//     background-color: #e0e0e0; // Change background color on hover
+//     border-color: #999; // Change border color on hover
+//   }
+
+//   &:hover svg {
+//     transform: translateX(-5px); // Move the icons a bit on hover
+//   }
+// }

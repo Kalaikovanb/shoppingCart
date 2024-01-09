@@ -1,204 +1,194 @@
-.news-letter{
-    padding: 0px 130px;
+.news-letter {
+  padding: 0px 130px;
+  display: flex;
+  gap: 30px;
+  margin: auto;
+  flex-direction: column;
+  margin-bottom: 50px;
+  width: 70%;
+  height: 85vh;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #ffcccc 0%, #cc99ff 50%, #99ccff 100%);
+  border-radius: 20px;
+  .newsletter-h2 {
+    font-size: 50px;
+    font-weight: 600;
+    color: black;
+  }
+  .newsletter-p {
+    font-size: 26px;
+    font-weight: 500;
+    color: black;
+  }
+  .input-box {
     display: flex;
-    gap: 30px;
-    margin: auto;
-    flex-direction: column;
-    background: whitesmoke;
-    width: 70%;
-    height: 85vh;
-    align-content: center;
+    height: 40px;
     justify-content: center;
     align-items: center;
-    .newsletter-h2{
-        font-size: 50px;
-        font-weight: 600;
-        color: black;
+    margin-top: 20px;
+    .input-box-input {
+      border: none;
+      outline: none;
+      width: 355px;
+      font-size: 18px;
+      height: 58px;
+      font-family: "Poppins";
+      border-radius: 40px;
+      padding-left: 30px;
     }
-    .newsletter-p{
-        font-size: 26px;
-        font-weight: 500;
-        color: black;
+    .input-box-button {
+      border: none;
+      font-weight: 600;
+      background: black;
+      color: white;
+      font-size: 20px;
+      width: 200px;
+      margin-left: -60px;
+      border-radius: 40px;
+      height: 60px;
+      font-family: "Poppins";
+      cursor: pointer;
     }
-    .input-box{
-        width: 662px;
-        display: flex;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .news-letter {
+    padding: 0px 100px;
+    height: 65vh;
+    .newsletter-h2 {
+      font-size: 36px;
+    }
+    .newsletter-p {
+      font-size: 20px;
+    }
+    .input-box {
+      height: 26px;
+      .input-box-input {
+        width: 325px;
+        font-size: 16px;
+        height: 60px;
+        border-radius: 40px;
+        padding-left: 30px;
+      }
+      .input-box-button {
+        font-size: 20px;
+        width: 200px;
+        margin-left: -50px;
+        height: 60px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .news-letter {
+    padding: 0px 80px;
+    height: 60vh;
+    .newsletter-h2 {
+      font-size: 30px;
+    }
+    .newsletter-p {
+      font-size: 18px;
+    }
+    .input-box {
+      .input-box-input {
+        width: 275px;
+        font-size: 15px;
+        height: 50px;
+        border-radius: 20px;
+        padding-left: 20px;
+      }
+      .input-box-button {
+        font-size: 16px;
+        width: 150px;
+        height: 52px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .news-letter {
+    padding: 0px 60px;
+    height: 50vh;
+    .newsletter-h2 {
+      font-size: 26px;
+    }
+    .newsletter-p {
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .news-letter {
+    padding: 0px 50px;
+    height: 40vh;
+    .newsletter-h2 {
+      font-size: 22px;
+    }
+    .newsletter-p {
+      font-size: 14px;
+    }
+    .input-box {
+      .input-box-input {
+        width: 230px;
+        font-size: 13px;
         height: 40px;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-        .input-box-input{
-            border: none;
-            outline: none;
-            width: 400px;
-            font-size: 18px;
-            height: 60px;
-            font-family: 'Poppins';
-            border-radius: 40px;
-            padding-left: 30px;
-        }
-        .input-box-button{
-            border: none;
-            font-weight: 600;
-            background: black;
-            color: white;
-            font-size: 20px;
-            width: 200px;
-            margin-left: -60px;
-            border-radius: 40px;
-            height: 60px;
-            font-family: 'Poppins';
-            cursor: pointer;
-        }
+        border-radius: 20px;
+        padding-left: 16px;
+      }
+      .input-box-button {
+        font-size: 16px;
+        width: 130px;
+        margin-left: -35px;
+        height: 43px;
+      }
     }
-    
+  }
 }
 
-
-@media screen and (max-width:1280px) {
-    .news-letter{
-        padding: 0px 100px;
-        height: 65vh;
-        .newsletter-h2{
-            font-size: 36px;
-        }
-        .newsletter-p{
-            font-size: 20px;
-        }
-        .input-box{
-            width: 430px;
-            height: 26px;
-            .input-box-input{
-                width: 400px;
-                font-size: 18px;
-                height: 60px;
-                border-radius: 40px;
-                padding-left: 30px;
-            }
-            .input-box-button{
-                font-size: 20px;
-                width: 200px;
-                margin-left: -60px;
-                height: 60px;
-            }
-        }
-        
+@media screen and (max-width: 520px) {
+  .news-letter {
+    padding: 0px 40px;
+    height: 30vh;
+    .newsletter-h2 {
+      font-size: 16px;
     }
-
+    .newsletter-p {
+      font-size: 12px;
+    }
+    .input-box {
+      .input-box-input {
+        width: 200px;
+        font-size: 11px;
+        height: 33px;
+        border-radius: 20px;
+        padding-left: 10px;
+      }
+      .input-box-button {
+        font-size: 12px;
+        width: 91px;
+        margin-left: -38px;
+        height: 35px;
+      }
+    }
+  }
 }
 
-
-@media screen and (max-width:1024px) {
-    .news-letter{
-        padding: 0px 80px;
-        height: 60vh;
-        .newsletter-h2{
-            font-size: 30px;
-        }
-        .newsletter-p{
-            font-size: 18px;
-        }
-        .input-box{
-            width: 350px;
-            .input-box-input{
-                width: 275px;
-                font-size: 15px;
-                height: 50px;
-                border-radius: 20px;
-                padding-left: 20px;
-            }
-            .input-box-button{
-                font-size: 16px;
-                width: 150px;
-                margin-left: -25px;
-                height: 50px;
-            }
-        }
-        
+@media screen and (max-width: 400px) {
+  .news-letter {
+    gap: 20px;
+    padding: 0px 30px;
+    height: 30vh;
+    .newsletter-h2 {
+      font-size: 16px;
     }
-}
-
-@media screen and (max-width:810px) {
-    .news-letter{
-        padding: 0px 60px;
-        height: 50vh;
-        .newsletter-h2{
-            font-size: 26px;
-        }
-        .newsletter-p{
-            font-size: 16px;
-        }
-        
+    .newsletter-p {
+      font-size: 10px;
     }
-}
-
-@media screen and (max-width:700px) {
-    .news-letter{
-        padding: 0px 50px;
-        height: 40vh;
-        .newsletter-h2{
-            font-size: 22px;
-        }
-        .newsletter-p{
-            font-size: 14px;
-        }
-        .input-box{
-            .input-box-input{
-                width: 161px;
-                font-size: 13px;
-                height: 40px;
-                border-radius: 20px;
-                padding-left: 16px;
-            }
-            .input-box-button{
-                font-size: 16px;
-                width: 130px;
-                margin-left: -20px;
-                height: 40px;
-            }
-        }
-        
-    }
-}
-
-@media screen and (max-width:520px) {
-    .news-letter{
-        padding: 0px 40px;
-        height: 30vh;
-        .newsletter-h2{
-            font-size: 16px;
-        }
-        .newsletter-p{
-            font-size: 12px;
-        }       
-        .input-box {
-            .input-box-input{
-                width: 130px;
-                font-size: 11px;
-                height: 35px;
-                border-radius: 20px;
-                padding-left: 10px;
-            }
-            .input-box-button{
-                font-size: 12px;
-                width: 91px;
-                margin-left: -35px;
-                height: 35px;
-            }
-        } 
-    }
-}
-
-@media screen and (max-width:400px) {
-    .news-letter{
-        gap: 20px;
-        padding: 0px 30px;
-        height: 30vh;
-        .newsletter-h2{
-            font-size: 16px;
-        }
-        .newsletter-p{
-            font-size: 10px;
-        } 
-    }
+  }
 }

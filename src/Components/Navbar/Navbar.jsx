@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Navbar.scss";
 import logo from "../Assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContext";
 import { FiMoon, FiSun } from "react-icons/fi";
 import ThemeContext from "../../Context/themecontexts";
@@ -10,11 +10,31 @@ import { BsCartCheckFill } from "react-icons/bs";
 function Navbar() {
   const [menu, setMenu] = useState("shop");
   const { theme, setTheme } = useContext(ThemeContext);
-  const [checked, setChecked] = useState(theme === "light");
+  const [checked, setChecked] = useState(theme === "dark");
   const menuRef = useRef();
   const mobile_res = useRef();
   const burger = useRef();
+  const navigate = useNavigate();
   const { totalcartitems } = useContext(ShopContext);
+  const [user_info, setUser_info] = useState([]);
+
+  useEffect(() => {
+    let user = JSON.parse(sessionStorage.getItem("user"));
+
+    if (user === "" || user === null) {
+      setUser_info(false);
+    } else {
+      setUser_info(user);
+    }
+  }, [navigate]);
+
+  const logout = () => {
+    const confirmed = window.confirm("Are you sure you want to logout?");
+    if (confirmed) {
+      sessionStorage.removeItem("user");
+      setUser_info(false);
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,7 +42,7 @@ function Navbar() {
 
   const toggle = () => {
     setChecked((prevChecked) => !prevChecked);
-    setTheme(checked ? "dark" : "light");
+    setTheme(checked ? "light" : "dark");
   };
 
   useEffect(() => {
@@ -34,7 +54,6 @@ function Navbar() {
   }, [menu]);
   const nav_open = (e) => {
     mobile_res.current.classList.toggle("mobile_response");
-    // e.target.classList.toggle("visible");
     burger.current.classList.toggle("activate");
   };
   return (
@@ -45,7 +64,7 @@ function Navbar() {
           onClick={() => {
             setMenu("shop");
           }}
-          to="/shoppingCart"
+          to="/"
           style={{ textDecoration: "none" }}
         >
           <p>SHOPPER</p>
@@ -58,7 +77,7 @@ function Navbar() {
             setMenu("shop");
           }}
         >
-          <Link to="/shoppingCart" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: "none" }}>
             Home
           </Link>{" "}
           {menu === "shop" ? <hr /> : ""}
@@ -68,7 +87,7 @@ function Navbar() {
             setMenu("men");
           }}
         >
-          <Link to="/shoppingCart/men" style={{ textDecoration: "none" }}>
+          <Link to="/men" style={{ textDecoration: "none" }}>
             Men
           </Link>{" "}
           {menu === "men" ? <hr /> : ""}
@@ -78,7 +97,7 @@ function Navbar() {
             setMenu("women");
           }}
         >
-          <Link to="/shoppingCart/women" style={{ textDecoration: "none" }}>
+          <Link to="/women" style={{ textDecoration: "none" }}>
             Women
           </Link>{" "}
           {menu === "women" ? <hr /> : ""}
@@ -88,18 +107,23 @@ function Navbar() {
             setMenu("kids");
           }}
         >
-          <Link to="/shoppingCart/kids" style={{ textDecoration: "none" }}>
+          <Link to="/kids" style={{ textDecoration: "none" }}>
             Kids
           </Link>{" "}
           {menu === "kids" ? <hr /> : ""}
         </li>
       </ul>
       <div className="login-cart">
-        <Link to="/shoppingCart/register">
-          <button>Login</button>
-        </Link>
+        {user_info ? (
+          <button onClick={logout}>Logout</button>
+        ) : (
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
+        )}
+
         <Link
-          to="/shoppingCart/cart"
+          to="/cart"
           onClick={() => window.scrollTo(0, 0)}
           style={{ textDecoration: "none" }}
         >
@@ -122,10 +146,10 @@ function Navbar() {
         />
         <label htmlFor="icon-find">
           <div className="icon">
-            <FiMoon />
+            <FiSun />
           </div>
           <div className="icon">
-            <FiSun />
+            <FiMoon />
           </div>
         </label>
       </div>
@@ -149,7 +173,7 @@ function Navbar() {
             setMenu("shop");
           }}
         >
-          <Link to="/shoppingCart" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: "none" }}>
             Home
           </Link>{" "}
           {menu === "shop" ? <hr /> : ""}
@@ -159,7 +183,7 @@ function Navbar() {
             setMenu("men");
           }}
         >
-          <Link to="/shoppingCart/men" style={{ textDecoration: "none" }}>
+          <Link to="/men" style={{ textDecoration: "none" }}>
             Men
           </Link>{" "}
           {menu === "men" ? <hr /> : ""}
@@ -169,7 +193,7 @@ function Navbar() {
             setMenu("women");
           }}
         >
-          <Link to="/shoppingCart/women" style={{ textDecoration: "none" }}>
+          <Link to="/women" style={{ textDecoration: "none" }}>
             Women
           </Link>{" "}
           {menu === "women" ? <hr /> : ""}
@@ -179,7 +203,7 @@ function Navbar() {
             setMenu("kids");
           }}
         >
-          <Link to="/shoppingCart/kids" style={{ textDecoration: "none" }}>
+          <Link to="/kids" style={{ textDecoration: "none" }}>
             Kids
           </Link>{" "}
           {menu === "kids" ? <hr /> : ""}

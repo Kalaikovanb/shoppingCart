@@ -1,0 +1,198 @@
+.backmoon {
+  body {
+    background: #1a1e23;
+    margin: 0;
+  }
+
+  .leaf {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  .leaf div {
+    position: absolute;
+    display: block;
+  }
+  .leaf div:nth-child(1) {
+    left: 20%;
+    animation: fall 15s linear infinite;
+    animation-delay: -2s;
+  }
+  .leaf div:nth-child(2) {
+    left: 70%;
+    animation: fall 15s linear infinite;
+    animation-delay: -4s;
+  }
+  .leaf div:nth-child(3) {
+    left: 10%;
+    animation: fall 20s linear infinite;
+    animation-delay: -7s;
+  }
+  .leaf div:nth-child(4) {
+    left: 50%;
+    animation: fall 18s linear infinite;
+    animation-delay: -5s;
+  }
+  .leaf div:nth-child(5) {
+    left: 85%;
+    animation: fall 14s linear infinite;
+    animation-delay: -5s;
+  }
+  .leaf div:nth-child(6) {
+    left: 15%;
+    animation: fall 16s linear infinite;
+    animation-delay: -10s;
+  }
+  .leaf div:nth-child(7) {
+    left: 90%;
+    animation: fall 15s linear infinite;
+    animation-delay: -4s;
+  }
+
+  @keyframes fall {
+    0% {
+      opacity: 1;
+      top: -10%;
+      transform: translateX (20px) rotate(0deg);
+    }
+    20% {
+      opacity: 0.8;
+      transform: translateX (-20px) rotate(45deg);
+    }
+    40% {
+      transform: translateX (-20px) rotate(90deg);
+    }
+    60% {
+      transform: translateX (-20px) rotate(135deg);
+    }
+    80% {
+      transform: translateX (-20px) rotate(180deg);
+    }
+    100% {
+      top: 110%;
+      transform: translateX (-20px) rotate(225deg);
+    }
+  }
+  .leaf1 {
+    transform: rotateX(180deg);
+  }
+
+  $bubble-count: 50;
+  $sway-type: "sway-left-to-right", "sway-right-to-left";
+
+  @function random_range($min, $max) {
+    $rand: random();
+    $random_range: $min + floor($rand * (($max - $min) + 1));
+    @return $random_range;
+  }
+
+  @function sample($list) {
+    @return nth($list, random(length($list)));
+  }
+
+  .bubbles {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    .bubble {
+      position: absolute;
+      left: var(--bubble-left-offset);
+      bottom: -75%;
+      display: block;
+      width: var(--bubble-radius);
+      height: var(--bubble-radius);
+      border-radius: 50%;
+      animation: float-up var(--bubble-float-duration) var(--bubble-float-delay)
+        ease-in infinite;
+
+      &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: hsla(183, 94%, 76%, 0.3);
+        border-radius: inherit;
+        animation: var(--bubble-sway-type) var(--bubble-sway-duration)
+          var(--bubble-sway-delay) ease-in-out alternate infinite;
+      }
+
+      @for $i from 0 through $bubble-count {
+        &:nth-child(#{$i}) {
+          --bubble-left-offset: #{random_range(0vw, 100vw)};
+          --bubble-radius: #{random_range(1vw, 10vw)};
+          --bubble-float-duration: #{random_range(6s, 12s)};
+          --bubble-sway-duration: #{random_range(4s, 6s)};
+          --bubble-float-delay: #{random_range(0s, 4s)};
+          --bubble-sway-delay: #{random_range(0s, 4s)};
+          --bubble-sway-type: #{sample($sway-type)};
+        }
+      }
+    }
+
+    @keyframes float-up {
+      to {
+        transform: translateY(-175vh);
+      }
+    }
+
+    @keyframes sway-left-to-right {
+      from {
+        transform: translateX(-100%);
+      }
+
+      to {
+        transform: translateX(100%);
+      }
+    }
+
+    @keyframes sway-right-to-left {
+      from {
+        transform: translateX(100%);
+      }
+
+      to {
+        transform: translateX(-100%);
+      }
+    }
+  }
+  .gradient {
+    position: absolute;
+    --size: 200px;
+    --speed: 50s;
+    --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+
+    width: var(--size);
+    height: var(--size);
+    filter: blur(calc(var(--size) / 5));
+    background-image: linear-gradient(hsl(158, 82, 57, 85%), hsl(252, 82, 57));
+    animation: rotate var(--speed) var(--easing) alternate infinite;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+
+  @media (min-width: 720px) {
+    .gradient {
+      --size: 500px;
+    }
+  }
+
+  body {
+    background-color: #222;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    place-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* This is just to transition when you change the viewport size. */
+  * {
+    transition: all 0.25s ease-out;
+  }
+}

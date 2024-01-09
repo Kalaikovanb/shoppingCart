@@ -1,3 +1,4 @@
+// @import "~bootstrap/scss/bootstrap/";
 /* .App {
   text-align: center;
 }
@@ -37,11 +38,22 @@
   }
 } */
 
-
 /* #dark{
   background: rgb(13, 6, 32) !important;
   color: white !important;
 }
 #light{
   background: white !important;
+} */
+
+/* @keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 } */

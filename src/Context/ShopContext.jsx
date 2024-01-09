@@ -26,14 +26,18 @@ const initialcart = () => {
 const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(initialcart());
   const [theme, settheme] = useState("light");
+  const [user, setUser] = useState(false);
   const switchMode = () => {
     settheme(theme === "light" ? "dark" : "light");
   };
-  const addCart = (itemId) => {
+
+  // setUser(JSON.parse(sessionStorage.getItem("user")));
+  const addCart = (itemId, selectedSize) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     const item = all_product.find((e) => e.id === Number(itemId));
+    const itemWithSize = { ...item, size: selectedSize };
     const getItem = JSON.parse(localStorage.getItem("cart_items")) || [];
-    const setid = [...getItem, item];
+    const setid = [...getItem, itemWithSize];
     localStorage.setItem("cart_items", JSON.stringify(setid));
   };
   const removeCart = (itemId) => {
@@ -69,6 +73,8 @@ const ShopContextProvider = (props) => {
   };
 
   const contextValue = {
+    user,
+    setUser,
     all_product,
     cartItems,
     totalcartitems,
