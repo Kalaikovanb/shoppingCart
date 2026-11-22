@@ -9,7 +9,10 @@ const Product=()=>{
     const {all_product}=useContext(ShopContext);
     const {productId}=useParams();
     const product = all_product.find((e)=> e.id === Number(productId))
-    return ( 
+    if (!product) {
+        return <div className="product">Loading...</div>;
+    }
+    return (
         <div className="product">
             <Navigation data={product} />
             <ProductDisplay data={product}/>
