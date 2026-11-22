@@ -66,21 +66,36 @@ function Register() {
     }
     setLoading(true);
 
-    const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
     axios
-      .post(`${API_BASE}/auth/register`, { email: data.email, password: data.password })
-      .then(() => {
-        toast.success("Account created, please log in.");
-        sessionStorage.setItem("Register", JSON.stringify(data.email));
-        setData({
-          user_name: "",
-          password: "",
-          c_password: "",
-          email: "",
-        });
-        navigate("/login");
+      .post(
+        "https://kalaithoughts.infinityfreeapp.com/php/register.php",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          responseType: "json",
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status) {
+          toast.success(response.data.data);
+          sessionStorage.setItem(
+            "Register",
+            JSON.stringify(response.data.result.email)
+          );
+          setData({
+            user_name: "",
+            password: "",
+            c_password: "",
+            email: "",
+          });
+          if (response.data.otp) navigate("/otp");
+          else navigate("/login");
+        } else toast.error(response.data.data);
       })
-      .catch((error) => toast.error(error.response?.data?.error || "Registration failed"))
+      .catch((error) => console.error("Error posting data:", error))
       .finally(() => {
         setLoading(false);
       });

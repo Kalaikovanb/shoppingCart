@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import productImages from "../Components/Assets/productImages";
 
@@ -6,16 +6,23 @@ export const ShopContext = createContext(null);
 
 const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
-function authHeaders() {
-  const token = sessionStorage.getItem("token");
-  return token ? { Authorization: `Bearer ${token}` } : {};
-}
+const initialcart = () => {
+  const cart = {};
+  const getItem = JSON.parse(localStorage.getItem("cart_items"));
+  if (getItem === undefined || getItem === null) {
+    return cart;
+  }
+  getItem.forEach((item) => {
+    cart[item.id] = (cart[item.id] || 0) + 1;
+  });
+  return cart;
+};
 
 const ShopContextProvider = (props) => {
   const [all_product, setAllProduct] = useState([]);
-  const [cartItems, setCartItems] = useState({});
+  const [cartItems, setCartItems] = useState(initialcart());
   const [theme, settheme] = useState("light");
-  const [user, setUser] = useState(!!sessionStorage.getItem("token"));
+  const [user, setUser] = useState(false);
 
   const switchMode = () => {
     settheme(theme === "light" ? "dark" : "light");
@@ -38,55 +45,41 @@ const ShopContextProvider = (props) => {
       .catch((error) => console.error("Error loading products:", error));
   }, []);
 
-  const refreshCart = useCallback(() => {
-    if (!sessionStorage.getItem("token")) {
-      setCartItems({});
-      return;
-    }
-    axios
-      .get(`${API_BASE}/cart`, { headers: authHeaders() })
-      .then((res) => {
-        const asMap = {};
-        res.data.forEach((item) => {
-          asMap[item.productId] = item.qty;
-        });
-        setCartItems(asMap);
-      })
-      .catch((error) => console.error("Error loading cart:", error));
-  }, []);
-
-  useEffect(() => {
-    refreshCart();
-  }, [user, refreshCart]);
-
-  const addCart = (itemId) => {
-    axios
-      .post(`${API_BASE}/cart`, { productId: Number(itemId), qty: 1 }, { headers: authHeaders() })
-      .then(refreshCart)
-      .catch((error) => console.error("Error adding to cart:", error));
+  const addCart = (itemId, selectedSize) => {
+    setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
+    const item = all_product.find((e) => e.id === Number(itemId));
+    const itemWithSize = { ...item, size: selectedSize };
+    const getItem = JSON.parse(localStorage.getItem("cart_items")) || [];
+    const setid = [...getItem, itemWithSize];
+    localStorage.setItem("cart_items", JSON.stringify(setid));
   };
-
   const removeCart = (itemId) => {
-    axios
-      .delete(`${API_BASE}/cart/${itemId}`, { headers: authHeaders() })
-      .then(refreshCart)
-      .catch((error) => console.error("Error removing from cart:", error));
+    setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) - 1 }));
+    const getItem = JSON.parse(localStorage.getItem("cart_items")) || [];
+    const removeItems = getItem.filter((e) => e.id === itemId);
+    const addItem = getItem.filter((e) => e.id !== itemId);
+    removeItems.splice(-1);
+    const overAll = removeItems.concat(addItem);
+    localStorage.setItem("cart_items", JSON.stringify(overAll));
   };
-
   const totalcartitems = () => {
     let totalCount = 0;
     for (const item in cartItems) {
-      if (cartItems[item] > 0) totalCount += cartItems[item];
+      if (cartItems[item] > 0) {
+        totalCount += cartItems[item];
+      }
     }
     return totalCount;
   };
-
   const totalamount = () => {
     let totalvalue = 0;
+
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        const product = all_product.find((p) => p.id === Number(item));
-        if (product) totalvalue += product.new_price * cartItems[item];
+        let totalInfo = all_product.find(
+          (product) => product.id === Number(item)
+        );
+        if (totalInfo) totalvalue += totalInfo.new_price * cartItems[item];
       }
     }
     return totalvalue;

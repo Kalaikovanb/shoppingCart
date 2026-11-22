@@ -13,29 +13,6 @@ const SCHEMA = `
         oldPrice REAL NOT NULL,
         stock INTEGER NOT NULL DEFAULT 20
     );
-
-    CREATE TABLE IF NOT EXISTS users (
-        id TEXT PRIMARY KEY,
-        email TEXT NOT NULL UNIQUE,
-        passwordHash TEXT NOT NULL,
-        salt TEXT NOT NULL,
-        role TEXT NOT NULL DEFAULT 'customer',
-        createdAt TEXT NOT NULL
-    );
-
-    CREATE TABLE IF NOT EXISTS sessions (
-        token TEXT PRIMARY KEY,
-        userId TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-        expiresAt TEXT NOT NULL
-    );
-
-    CREATE TABLE IF NOT EXISTS cart_items (
-        id TEXT PRIMARY KEY,
-        userId TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-        productId INTEGER NOT NULL REFERENCES products(id),
-        qty INTEGER NOT NULL
-    );
-    CREATE INDEX IF NOT EXISTS idx_cart_items_userId ON cart_items(userId);
 `;
 
 const CATEGORIES = ['women', 'men', 'kid'];
