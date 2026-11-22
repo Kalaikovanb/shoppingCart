@@ -16,7 +16,6 @@ import { useContext, useEffect } from "react";
 import ThemeContext from "./Context/themecontexts";
 import Login from "./Components/Login/login";
 import Otp from "./Components/OTP/Otp";
-import Example from "./Components/Modal/Modal";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -36,7 +35,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <Example />
         <Routes>
           <Route path="/" element={<Shop />} />
           <Route path="/login" element={<Login />} />

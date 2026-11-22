@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import cartImg from "../Assets/empty_cart.jpeg";
 // import ModalPopup from "../Modal/Modal";
-import Example from "../Modal/Modal";
 
 function CartItems() {
   const [show, setShow] = useState(false);
@@ -108,14 +107,11 @@ function CartItems() {
             <button className="proceed-btn" onClick={handleShow}>
               Proceed to Checkout
             </button>
-            <div className="popup">
-              <Example />
-              {/* <ModalPopup
-                show={show}
-                handleClose={handleClose}
-                handleShow={handleShow}
-              /> */}
-            </div>
+            {/* <ModalPopup
+              show={show}
+              handleClose={handleClose}
+              handleShow={handleShow}
+            /> */}
           </div>
         </>
       ) : (
