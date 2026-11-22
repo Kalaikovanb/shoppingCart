@@ -32,6 +32,7 @@ function Navbar() {
     const confirmed = window.confirm("Are you sure you want to logout?");
     if (confirmed) {
       sessionStorage.removeItem("user");
+      sessionStorage.removeItem("token");
       setUser_info(false);
     }
   };

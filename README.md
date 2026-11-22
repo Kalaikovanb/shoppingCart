@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Backend
+
+`server/` is a Node.js + Express API backing this app, with an in-memory SQLite database (`server/db/connection.js`, using Node's built-in `node:sqlite`, no native dependency). It currently covers:
+
+- `GET /api/products`, `GET /api/products/:id` - the 36 seeded products (read-only).
+- `POST /api/auth/register`, `POST /api/auth/login` - real accounts, hashed passwords, session tokens.
+- `GET /api/cart`, `POST /api/cart`, `DELETE /api/cart/:productId` - a server-side cart tied to the logged-in user.
+
+Run it with `cd server && npm install && npm start` (port 5000 by default; the client reads `REACT_APP_API_BASE`, defaulting to `http://localhost:5000/api`). Test it with `cd server && npm test`.
+
+Not yet built: an admin panel for managing products, real OTP verification (the OTP screen and the "insert products" admin screen still point at dead placeholder endpoints from before this backend existed), checkout, and orders.
+
 ## Available Scripts
 
 In the project directory, you can run:

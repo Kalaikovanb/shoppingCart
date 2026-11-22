@@ -58,30 +58,22 @@ function Login() {
       return;
     }
 
-    const params = new URLSearchParams(data);
+    const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
     axios
-      .get(`http://localhost/login.php?${params}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        responseType: "json",
-      })
+      .post(`${API_BASE}/auth/login`, { email: data.email, password: data.password })
       .then((response) => {
-        if (response.data.status) {
-          sessionStorage.setItem("user", JSON.stringify(response.data.result));
-          setUser(true);
-          toast.success(response.data.info);
-          nav("/");
-          setData({
-            password: "",
-            email: "",
-          });
-        } else {
-          toast.error(response.data.info);
-        }
+        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("user", JSON.stringify(response.data.user));
+        setUser(true);
+        toast.success("Logged in successfully");
+        nav("/");
+        setData({
+          password: "",
+          email: "",
+        });
       })
       .catch((error) => {
-        console.error("Error posting data:", error);
+        toast.error(error.response?.data?.error || "Login failed");
       });
   };
 

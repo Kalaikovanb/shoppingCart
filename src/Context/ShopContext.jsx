@@ -1,72 +1,92 @@
-import React, { createContext, useState } from "react";
-import all_product from "../Components/Assets/all_product";
+import React, { createContext, useState, useEffect, useCallback } from "react";
+import axios from "axios";
+import productImages from "../Components/Assets/productImages";
 
 export const ShopContext = createContext(null);
 
-const initialcart = () => {
-  let cart = {};
-  for (let index = 0; index < all_product.length + 1; index++) {
-    cart[index] = 0;
-  }
-  const getItem = JSON.parse(localStorage.getItem("cart_items"));
-  if (getItem === (undefined || null)) {
-    return cart;
-  } else {
-    for (const item in cart) {
-      for (const index in getItem) {
-        if (getItem[index].id === Number(item)) {
-          cart[item] += 1;
-        }
-      }
-    }
-    return cart;
-  }
-};
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+
+function authHeaders() {
+  const token = sessionStorage.getItem("token");
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
 
 const ShopContextProvider = (props) => {
-  const [cartItems, setCartItems] = useState(initialcart());
+  const [all_product, setAllProduct] = useState([]);
+  const [cartItems, setCartItems] = useState({});
   const [theme, settheme] = useState("light");
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(!!sessionStorage.getItem("token"));
+
   const switchMode = () => {
     settheme(theme === "light" ? "dark" : "light");
   };
 
-  // setUser(JSON.parse(sessionStorage.getItem("user")));
-  const addCart = (itemId, selectedSize) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    const item = all_product.find((e) => e.id === Number(itemId));
-    const itemWithSize = { ...item, size: selectedSize };
-    const getItem = JSON.parse(localStorage.getItem("cart_items")) || [];
-    const setid = [...getItem, itemWithSize];
-    localStorage.setItem("cart_items", JSON.stringify(setid));
+  useEffect(() => {
+    axios
+      .get(`${API_BASE}/products`)
+      .then((res) => {
+        const products = res.data.map((p) => ({
+          id: p.id,
+          name: p.name,
+          category: p.category,
+          image: productImages[p.id],
+          new_price: p.newPrice,
+          old_price: p.oldPrice,
+        }));
+        setAllProduct(products);
+      })
+      .catch((error) => console.error("Error loading products:", error));
+  }, []);
+
+  const refreshCart = useCallback(() => {
+    if (!sessionStorage.getItem("token")) {
+      setCartItems({});
+      return;
+    }
+    axios
+      .get(`${API_BASE}/cart`, { headers: authHeaders() })
+      .then((res) => {
+        const asMap = {};
+        res.data.forEach((item) => {
+          asMap[item.productId] = item.qty;
+        });
+        setCartItems(asMap);
+      })
+      .catch((error) => console.error("Error loading cart:", error));
+  }, []);
+
+  useEffect(() => {
+    refreshCart();
+  }, [user, refreshCart]);
+
+  const addCart = (itemId) => {
+    axios
+      .post(`${API_BASE}/cart`, { productId: Number(itemId), qty: 1 }, { headers: authHeaders() })
+      .then(refreshCart)
+      .catch((error) => console.error("Error adding to cart:", error));
   };
+
   const removeCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-    const getItem = JSON.parse(localStorage.getItem("cart_items")) || [];
-    const removeItems = getItem.filter((e) => e.id === itemId);
-    const addItem = getItem.filter((e) => e.id !== itemId);
-    removeItems.splice(-1);
-    const overAll = removeItems.concat(addItem);
-    localStorage.setItem("cart_items", JSON.stringify(overAll));
+    axios
+      .delete(`${API_BASE}/cart/${itemId}`, { headers: authHeaders() })
+      .then(refreshCart)
+      .catch((error) => console.error("Error removing from cart:", error));
   };
+
   const totalcartitems = () => {
     let totalCount = 0;
     for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        totalCount += cartItems[item];
-      }
+      if (cartItems[item] > 0) totalCount += cartItems[item];
     }
     return totalCount;
   };
+
   const totalamount = () => {
     let totalvalue = 0;
-
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        let totalInfo = all_product.find(
-          (product) => product.id === Number(item)
-        );
-        totalvalue += totalInfo.new_price * cartItems[item];
+        const product = all_product.find((p) => p.id === Number(item));
+        if (product) totalvalue += product.new_price * cartItems[item];
       }
     }
     return totalvalue;
